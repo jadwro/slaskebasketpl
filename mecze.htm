@@ -1,0 +1,158 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function sezon(s) {
+var adres = s.options[s.selectedIndex].value;
+window.location.href = adres;
+}
+-->
+</SCRIPT>
+<?
+include("polacz.htm");
+if($mecz<=478) {
+   include("mecze03.php");
+} else {
+   $spotkanie = mysql_query("select*from mecze where id='$mecz'");
+   while ($rekord = mysql_fetch_array($spotkanie)) {
+      if($rekord[godzina]!="") {
+         $godzina = ", godz. $rekord[godzina]";
+      } else {
+         $godzina = "";
+      }
+      if($rekord[miejsce]!="") {
+         $miejsce = ", $rekord[miejsce]";
+      } else {
+         $miejsce = "";
+      }
+      $wez_roz = mysql_fetch_array(mysql_query("select rozgrywki from rozgrywki where id='$rekord[rozgrywki]'"));
+      $kolejka = mysql_fetch_array(mysql_query("select numer from kolejki where id='$rekord[kolejka]'"));
+      print "<table border=0>";
+      print "<tr><td width=215 class=tekst align=left><b>$wez_roz[rozgrywki], $kolejka[numer] kolejka</font></td><td align=right class=male width=345><b>$rekord[dzien].$rekord[miesiac].$rekord[rok] r.$godzina$miejsce</b></td></tr>";
+      print "<tr><td colspan=2 background=http://grafika.slask.e-basket.pl/grafika/pasek2.jpg width=560 height=1></td></tr>";
+      print "</table>";
+      print "<center><table border=0 valign=bottom>";
+      $logo1 = mysql_fetch_array(mysql_query("select adres,nazwa from zdjecia where id='$rekord[d1_logo]'"));
+      $logo2 = mysql_fetch_array(mysql_query("select adres,nazwa from zdjecia where id='$rekord[d2_logo]'"));
+      $druzyna1 = mysql_fetch_array(mysql_query("select nazwa from kluby where id='$rekord[druzyna1]'"));
+      $druzyna2 = mysql_fetch_array(mysql_query("select nazwa from kluby where id='$rekord[druzyna2]'"));
+      print "<tr><td height=85 align=center><img src=http://grafika.slask.e-basket.pl/$logo1[adres] alt=\"$logo1[nazwa]\" border=1></td><td width=150><center><font class=wynik>$rekord[d1_wynik]:$rekord[d2_wynik]</font><br><font class=kwarta>$rekord[kwarty]</font></td><td align=center><img src=http://grafika.slask.e-basket.pl/$logo2[adres] alt=\"$logo2[nazwa]\" border=1></td></tr>";
+      print "<tr><td class=tekst align=center width=200><center><b>$druzyna1[nazwa]</b></center></td><td></td><td class=tekst align=center width=200><center><b>$druzyna2[nazwa]</b</center></td></tr>";
+      print "</table>";
+      if(($rekord[d1_kosze] != "") || ($rekord[d2_kosze] != "")) {
+      print "<table border=0 cellspacing=0 cellpadding=0><tr><td background=http://grafika.slask.e-basket.pl/grafika/pasek2.jpg width=560 height=1></td></tr></table>";
+      print "<table border=0>";
+      print "<tr><td bgcolor=#eeeeee class=kwarta><b>$druzyna1[nazwa]:</b> $rekord[d1_kosze]</td></tr>";
+      print "<tr><td bgcolor=#eeeeee class=kwarta><b>$druzyna2[nazwa]:</b> $rekord[d2_kosze]</td></tr>";
+      print "</table>";
+      }
+      print "</center>";
+      if($rekord[zobacz_tez] != "") {
+         print "<font class=tekst>$rekord[zobacz_tez]</font>";
+      }
+      print "<table border=0 cellspacing=0 cellpadding=0><tr><td background=http://grafika.slask.e-basket.pl/grafika/pasek2.jpg width=560 height=1></td></tr></table>";
+      print "<table border=0 cellspacing=0 cellpadding=0><tr><td class=tekst>";
+      if($rekord[gracz_meczu] != "") {
+         $graczmeczu = mysql_fetch_array(mysql_query("select imie,nazwisko,zdjecie from zawodnicy where id='$rekord[gracz_meczu]'"));
+         $zdjecie = mysql_fetch_array(mysql_query("select adres,nazwa from zdjecia where id='$graczmeczu[zdjecie]'"));
+         print "<table border=1 cellspacing=0 cellpadding=0 align=right>";
+         print "<tr><td class=male bgcolor=#eeeeee width=70 align=center><b>Zawodnik meczu ze ¦l±ska:</td></tr>";
+         print "<tr><td width=70 align=center bgcolor=#eeeeee><a href=\"?poddzial=1&zawodnik=$rekord[gracz_meczu]\"><img border=0 src=http://grafika.slask.e-basket.pl/$zdjecie[adres] width=70></a>";
+         print "<br><font class=male><b>$graczmeczu[imie] $graczmeczu[nazwisko]</b><br>$rekord[gracz_meczu_czemu]</td></tr>";
+         print "</table>";
+      }
+      print "$rekord[opis]";
+      print "</td></tr></table>";
+      print "<!-------------- STATYSTYKI POCZATEK ---------------->";
+      $wez_slask = mysql_query("select*from statystyki where mecz='$mecz' AND druzyna='1' order by pkt");
+      if(mysql_num_rows($wez_slask)!=0) {
+         print "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=tekst valign=middle width=520 bgcolor=#eeeeee align=center><a name=stat></a><center><b>Statystyki</b></center></td></tr></table>";
+         $meczyk = mysql_fetch_array(mysql_query("select id,druzyna1,druzyna2,d1_wynik,d2_wynik from mecze where id='$mecz'"));
+         $druzyna1 = mysql_fetch_array(mysql_query("select nazwa from kluby where id='$meczyk[druzyna1]'"));
+         $druzyna2 = mysql_fetch_array(mysql_query("select nazwa from kluby where id='$meczyk[druzyna2]'"));
+         print "<br><table border=0 cellpadding=0 cellspacing=1 class=tabelka>";
+         print "<tr><td align=center bgcolor=#dfdfdf class=kwarta width=120><b>Zawodnik</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=25><b>Pkt</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=25><b>Min</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=75><b>Rzuty za 2</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=75><b>Rzuty za 3</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=75><b>Rzuty za 1</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>Z</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>A</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>P</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>S</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>B</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>F</td></tr>";
+
+         while ($rekord = mysql_fetch_array($wez_slask)) {
+            if($rekord[w2]!=0) {
+               $procent2 = round($rekord[c2]/$rekord[w2]*100,0);
+            } else {
+               $procent2 = "-";
+            }
+            if($rekord[w3]!=0) {
+               $procent3 = round($rekord[c3]/$rekord[w3]*100,0);
+            } else {
+               $procent3 = "-";
+            }
+            if($rekord[w1]!=0) {
+               $procent1 = round($rekord[c1]/$rekord[w1]*100,0);
+            } else {
+               $procent1 = "-";
+            }
+            if($a%2==0) {
+               print "<tr onMouseOver = \"this.bgColor='DCD8D0'\" onMouseOut  = \"this.bgColor='#FFFFFF'\"><td class=kwarta align=left>$rekord[zawodnik]</td><td align=center class=kwarta>$rekord[pkt]</td><td align=center class=kwarta>$rekord[min]</td><td align=center class=kwarta>$rekord[c2]/$rekord[w2] - $procent2%</td><td align=center class=kwarta>$rekord[c3]/$rekord[w3] - $procent3%</td><td align=center class=kwarta>$rekord[c1]/$rekord[w1] - $procent1%</td><td align=center class=kwarta>$rekord[z]</td><td align=center class=kwarta>$rekord[a]</td><td align=center class=kwarta>$rekord[p]</td><td align=center class=kwarta>$rekord[s]</td><td align=center class=kwarta>$rekord[b]</td><td align=center class=kwarta>$rekord[f]</td></tr>";
+            } else {
+               print "<tr bgcolor=#eeeeee onMouseOver = \"this.bgColor='DCD8D0'\" onMouseOut  = \"this.bgColor='#eeeeee'\"><td class=kwarta align=left>$rekord[zawodnik]</td><td align=center class=kwarta>$rekord[pkt]</td><td align=center class=kwarta>$rekord[min]</td><td align=center class=kwarta>$rekord[c2]/$rekord[w2] - $procent2%</td><td align=center class=kwarta>$rekord[c3]/$rekord[w3] - $procent3%</td><td align=center class=kwarta>$rekord[c1]/$rekord[w1] - $procent1%</td><td align=center class=kwarta>$rekord[z]</td><td align=center class=kwarta>$rekord[a]</td><td align=center class=kwarta>$rekord[p]</td><td align=center class=kwarta>$rekord[s]</td><td align=center class=kwarta>$rekord[b]</td><td align=center class=kwarta>$rekord[f]</td></tr>";
+            }
+            $a++;
+         }
+         print "</table>";
+         $wez_p = mysql_query("select*from statystyki where mecz='$mecz' AND druzyna!='1' order by pkt");
+         print "<br><table border=0 cellpadding=0 cellspacing=1 class=tabelka>";
+         print "<tr><td align=center bgcolor=#dfdfdf class=kwarta width=120><b>Zawodnik</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=25><b>Pkt</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=25><b>Min</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=75><b>Rzuty za 2</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=75><b>Rzuty za 3</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=75><b>Rzuty za 1</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>Z</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>A</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>P</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>S</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>B</b></td><td align=center bgcolor=#dfdfdf class=kwarta width=20><b>F</td></tr>";
+
+         while ($rekord = mysql_fetch_array($wez_p)) {
+            if($rekord[w2]!=0) {
+               $procent2 = round($rekord[c2]/$rekord[w2]*100,0);
+            } else {
+               $procent2 = "-";
+            }
+            if($rekord[w3]!=0) {
+               $procent3 = round($rekord[c3]/$rekord[w3]*100,0);
+            } else {
+               $procent3 = "-";
+            }
+            if($rekord[w1]!=0) {
+               $procent1 = round($rekord[c1]/$rekord[w1]*100,0);
+            } else {
+               $procent1 = "-";
+            }
+            if($a%2==0) {
+               print "<tr onMouseOver = \"this.bgColor='DCD8D0'\" onMouseOut  = \"this.bgColor='#FFFFFF'\"><td class=kwarta align=left>$rekord[zawodnik]</td><td align=center class=kwarta>$rekord[pkt]</td><td align=center class=kwarta>$rekord[min]</td><td align=center class=kwarta>$rekord[c2]/$rekord[w2] - $procent2%</td><td align=center class=kwarta>$rekord[c3]/$rekord[w3] - $procent3%</td><td align=center class=kwarta>$rekord[c1]/$rekord[w1] - $procent1%</td><td align=center class=kwarta>$rekord[z]</td><td align=center class=kwarta>$rekord[a]</td><td align=center class=kwarta>$rekord[p]</td><td align=center class=kwarta>$rekord[s]</td><td align=center class=kwarta>$rekord[b]</td><td align=center class=kwarta>$rekord[f]</td></tr>";
+            } else {
+               print "<tr bgcolor=#eeeeee onMouseOver = \"this.bgColor='DCD8D0'\" onMouseOut  = \"this.bgColor='#eeeeee'\"><td class=kwarta align=left>$rekord[zawodnik]</td><td align=center class=kwarta>$rekord[pkt]</td><td align=center class=kwarta>$rekord[min]</td><td align=center class=kwarta>$rekord[c2]/$rekord[w2] - $procent2%</td><td align=center class=kwarta>$rekord[c3]/$rekord[w3] - $procent3%</td><td align=center class=kwarta>$rekord[c1]/$rekord[w1] - $procent1%</td><td align=center class=kwarta>$rekord[z]</td><td align=center class=kwarta>$rekord[a]</td><td align=center class=kwarta>$rekord[p]</td><td align=center class=kwarta>$rekord[s]</td><td align=center class=kwarta>$rekord[b]</td><td align=center class=kwarta>$rekord[f]</td></tr>";
+            }
+            $a++;
+         }
+         print "</table>";
+      }
+      print "<!------------- STATYSTYKI KONIEC ------------------>";
+
+      $zdjecia = mysql_query("select*from galeria where mecz='$mecz' order by id");
+
+      if(mysql_num_rows($zdjecia)!=0) {
+         print "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=tekst valign=middle width=520 bgcolor=#eeeeee align=center><a name=galeria></a><center><b>Galeria zdjêæ</b></center></td></tr></table>";
+         print "<table border=0 cellspacing=3 cellpadding=3>";
+         $count = 1;
+
+         while ($rekord = mysql_fetch_array($zdjecia)) {
+            $link = "<a class=galeria href=javascript:duze('$rekord[id]')><img width=80 height=130 src=http://grafika.slask.e-basket.pl/$rekord[adres_male] border=0 alt='$rekord[opis]'></a>";
+            if($count == "5"){$count = 1;}
+
+            if($count == 1) {
+               print("<tr><td width=130>$link</td>");
+            } else if($count == 2) {
+               print("<td width=130>$link</td>");
+            } else if($count == 3) {
+               print("<td width=130>$link</td>");
+            } else if($count == 4) {
+               print("<td width=130>$link</td></tr>");
+            }
+            $count++;
+         }
+
+         print "</table>";
+      }
+   }
+}
+?>
+</BODY>
+</HTML>

@@ -1,0 +1,87 @@
+<?
+if($m == 1) { $miesiac = "Styczeñ"; $miesiac2 = "stycznia"; }
+if($m == 2) { $miesiac = "Luty"; $miesiac2 = "lutego"; }
+if($m == 3) { $miesiac = "Marzec"; $miesiac2 = "marca"; }
+if($m == 4) { $miesiac = "Kwiecieñ"; $miesiac2 = "kwietnia"; }
+if($m == 5) { $miesiac = "Maj"; $miesiac2 = "maja"; }
+if($m == 6) { $miesiac = "Czerwiec"; $miesiac2 = "czerwca"; }
+if($m == 7) { $miesiac = "Lipiec"; $miesiac2 = "lipca"; }
+if($m == 8) { $miesiac = "Sierpieñ"; $miesiac2 = "sierpnia"; }
+if($m == 9) { $miesiac = "Wrzesieñ"; $miesiac2 = "wrze¶nia"; }
+if($m == 10) { $miesiac = "Pa¼dziernik"; $miesiac2 = "pa¼dziernika"; }
+if($m == 11) { $miesiac = "Listopad"; $miesiac2 = "listopada"; }
+if($m == 12) { $miesiac = "Grudzieñ"; $miesiac2 = "grudnia"; }
+
+if(($d) || ($d!="")) {
+   if(($kat) || ($kat!="")) {
+      $wez_dzial = mysql_fetch_array(mysql_query("select id,nazwa from dzialy where id='$kat'"));
+      echo "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=kwarta valign=middle width=520 bgcolor=#dfdfdf align=right><b>[ Archiwum ] - $d $miesiac2 $r (<a class=kwarta href=?dzial=$wez_dzial[id]>$wez_dzial[nazwa]</a>)</b>&nbsp;</td></tr></table>";
+   } else {
+      echo "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=kwarta valign=middle width=520 bgcolor=#dfdfdf align=right><b>[ Archiwum ] - $d $miesiac2 $r</b>&nbsp;</td></tr></table>";
+   }
+} else {
+   if(($kat) || ($kat!="")) {
+      $wez_dzial = mysql_fetch_array(mysql_query("select id,nazwa from dzialy where id='$kat'"));
+      echo "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=kwarta valign=middle width=520 bgcolor=#dfdfdf align=right><b>[ Archiwum ] - $miesiac $r (<a class=kwarta href=?dzial=$wez_dzial[id]>$wez_dzial[nazwa]</a>)</b>&nbsp;</td></tr></table>";
+   } else {
+      echo "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=kwarta valign=middle width=520 bgcolor=#dfdfdf align=right><b>[ Archiwum ] - $miesiac $r</b>&nbsp;</td></tr></table>";
+   }
+}
+
+echo "<center><br><a href=?poddzial=6&m=$m&r=$r><b>Wszystkie: </b></a>";
+$wezdzialy = mysql_query("select id,nazwa from dzialy where nazwa!='Nasi...'");
+while($rekord = mysql_fetch_array($wezdzialy)) {
+   echo "<a href=?poddzial=6&kat=$rekord[id]&d=$d&m=$m&r=$r>$rekord[nazwa]</a> | ";
+}
+echo "<br></center>";
+
+if(($d) || ($d!="")) {
+   if(($kat) || ($kat!="")) {
+      $pobierz = mysql_query("select tytul,tresc,godzina,dzien,miesiac_num,rok,kto,email,rodzaj,zdjecie,zrodlo,dzial from newsy where dzien='$d' AND miesiac_num='$m' AND rok='$r' AND dzial_id='$kat' order by id desc");
+   } else {
+      $pobierz = mysql_query("select*from newsy where dzien='$d' AND miesiac_num='$m' AND rok='$r' order by id desc");
+   }
+   while ($rekord = mysql_fetch_array($pobierz)) {
+      $koment = mysql_query("select*from komentarze where rodzic='$rekord[id]' AND auth=\"tak\"");
+      $ile_kom = mysql_num_rows($koment);
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 200) {
+         $polozenie = strpos($rekord[tresc],"...");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Wiêcej...]</a>";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+   include("techniczne/nagl_akt.php");
+   }
+} elseif($m) {
+   $pobierz = mysql_query("select*from newsy");
+   if(($kat) || ($kat!="")) {
+      $pobierz = mysql_query("select*from newsy where miesiac_num='$m' AND rok='$r' AND dzial_id='$kat' order by id desc");
+   } else {
+      $pobierz = mysql_query("select*from newsy where miesiac_num='$m' AND rok='$r' order by id desc");
+   }
+   while ($rekord = mysql_fetch_array($pobierz)) {
+      $koment = mysql_query("select*from komentarze where rodzic='$rekord[id]' AND auth=\"tak\"");
+      $ile_kom = mysql_num_rows($koment);
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 100) {
+         $polozenie = strpos($rekord[tresc],".");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Czytaj...]</a>";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+      print "<br><table border=0 cellspacing=0 cellpadding=1>";
+      print "<tr><td background=http://grafika.slask.e-basket.pl/grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;$rekord[tytul]</td></tr>";
+      print "<tr><td class=data_newsa>$rekord[dzien] $rekord[miesiac] $rekord[rok] ($rekord[godzina]) - <b>$rekord[dzial]</b> - <a href=mailto:$rekord[email] class=autor_newsa>$rekord[kto]</a></font></td>";
+      print "<td align=right><a href=index.php3?news=$rekord[id]&id=aktualnosci#kom><font class=male>Komentarze($ile_kom)</font></a></td></tr>";
+      print "<tr><td width=500 class=tekst_gl colspan=2>";
+      print "$wypisz";
+      print "</td></tr>";
+      print "</table>";
+   }
+}
+?>

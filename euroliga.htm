@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>   </TITLE>
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=iso-8859-2">
+<script langue=javascript>
+<!--
+function komentarze(id) {
+   window.open("komentarze_dopisz.php3?news="+id, "Dodajkomentarz",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=350,menubar=no');
+}
+function wyslij(id) {
+   window.open("aktualnosci_wyslij.php3?news="+id, "Wyslijnewsa",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=350,menubar=no');
+}
+//-->
+</script>
+</HEAD>
+<BODY>
+<?
+include("polacz.htm");
+$dzien = date("d",time());
+$miesiac = date("m",time());
+$rok = date("Y",time());
+
+echo "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=kwarta valign=middle width=520 bgcolor=#dfdfdf align=right><b>[ Euroliga ]</b>&nbsp;</td></tr></table>";
+
+$pobierz = mysql_query("select*from newsy where dzial_id='3' order by id desc limit 0,15");
+$ilu = mysql_num_rows($pobierz);
+while ($rekord = mysql_fetch_array($pobierz)) {
+   $koment = mysql_query("select*from komentarze where rodzic='$rekord[id]' AND auth='tak'");
+   $ile_kom = mysql_num_rows($koment);
+   $wypisz = "$rekord[tresc]";
+   if(strlen($wypisz) >= 200) {
+      $polozenie = strpos($rekord[tresc],"...");
+      if($polozenie) {
+         $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Więcej...]</a>";
+      } else {
+         $wypisz = "$rekord[tresc]";
+      }
+   }
+   include("techniczne/nagl_akt.php");
+}
+echo "<br><br><center><a href=?poddzial=6&m=$miesiac&r=$rok&kat=1>Archiwum</a></center>";
+?>
+</BODY>
+</HTML>

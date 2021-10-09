@@ -1,0 +1,257 @@
+<HTML>
+<HEAD>
+<TITLE>   </TITLE>
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=iso-8859-2">
+<script langue=javascript>
+<!--
+function komentarze(id) {
+   window.open("komentarze_dopisz.php3?news="+id, "Dodajkomentarz",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=350,menubar=no');
+}
+function wyslij(id) {
+   window.open("aktualnosci_wyslij.php3?news="+id, "Wyslijnewsa",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=350,menubar=no');
+}
+//-->
+</script>
+</HEAD>
+<BODY>
+<?
+function glowna() {
+   include("polacz.htm");
+   $dzien = date("d",time());
+   $miesiac = date("m",time());
+   $rok = date("Y",time());
+
+?>
+   <br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=kwarta valign=middle width=520 bgcolor=#dfdfdf align=right><b>[ Nasi byli gracze ] - sezon 2002/2003</b>&nbsp;</td></tr></table>
+   <table border=0 cellspacing=0 cellpadding=0>
+   <tr><td width=520 bgcolor=#eeeeee class=tekst_gl>W tym dziale prezentujemy poczynania byłych zawodników Śląska, którzy występowali we wrocławskim klubie w tym lub poprzednim sezonie. Oprócz tego będziemy również informować o poczynaniach ważniejszych zawodników, czyli np. Adama Wójcika.</td></tr></table>
+<?
+   $pobierz = mysql_query("select*from newsy where dzial=\"Nasi byli gracze\" order by id desc limit 0,15");
+   $ilu = mysql_num_rows($pobierz);
+   while ($rekord = mysql_fetch_array($pobierz)) {
+      $koment = mysql_query("select*from komentarze where rodzic='$rekord[id]'");
+      $ile_kom = mysql_num_rows($koment);
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 200) {
+         $polozenie = strpos($rekord[tresc],"...");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Więcej...]</a>";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+      include("techniczne/nagl_akt.php");
+   }
+   echo "<br><br><center><a href=?poddzial=6&m=$miesiac&r=$rok&kat=7>Archiwum</a></center>";
+}
+
+function wyswietl($zawodnik, $tabela = "byligracze") {
+   $gracz = mysql_query("select*from $tabela where id='$zawodnik'");
+   while ($rekord = mysql_fetch_array($gracz)) {
+      if($rekord[klub]!="") {
+         print "<br><center><font class=duze>$rekord[imie] $rekord[nazwisko] ($rekord[klub])</font></CENTER><br>";
+         $klub = "$rekord[klub] ($rekord[rozgrywki1]$przecinek)";
+      } else {
+         print "<br><center><font class=duze>$rekord[imie] $rekord[nazwisko]</font></CENTER><br>";
+         $klub = "b.d.";
+      }
+      print "<table border=0 cellspacing=0 cellpadding=0>";
+      print "<tr><td align=left valign=top width=400 class=tekst>";
+      print "<hr size=1 color=#dfdfdf width=350 align=center>";
+      print "<center><a href=?poddzial=11&zawodnik=$zawodnik&akcja=statystyki><b>Statystyki gracza</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=?poddzial=11&zawodnik=$zawodnik&akcja=newsy>Newsy o graczu</b></a></center>";
+      print "<hr size=1 color=#dfdfdf width=350 align=center>";
+      print "<table border=0>";
+      print "<tr><td class=tekst_gl valign=top><b>Imię:</b></td><td class=tekst_gl valign=top>$rekord[imie]</td></tr>";
+      print "<tr><td class=tekst_gl valign=top><b>Nazwisko:</b></td><td class=tekst_gl valign=top>$rekord[nazwisko]</td></tr>";
+      print "<tr><td class=tekst_gl valign=top><b>Urodzony:</b></td><td class=tekst_gl valign=top>$rekord[urodzony]</td></tr>";
+      print "<tr><td class=tekst_gl valign=top><b>Wzrost:</b></td><td class=tekst_gl valign=top>$rekord[wzrost] cm</td></tr>";
+      print "<tr><td class=tekst_gl valign=top><b>Waga:</b></td><td class=tekst_gl valign=top>$rekord[waga] kg</td></tr>";
+      print "<tr><td class=tekst_gl valign=top><b>Sezony w Śląsku Wrocław:</b></td><td class=tekst_gl valign=top>$rekord[sezon_slask]</td></tr>";
+      if($rekord[rozgrywki2]!="") {
+         $przecinek = ", $rekord[rozgrywki2]";
+      } else {
+         $przecinek = "";
+      }
+      print "<tr><td class=tekst_gl valign=top><b>Aktualny klub:</b></td><td class=tekst_gl valign=top>$klub</td></tr>";
+      print "<tr><td class=tekst_gl valign=top><b>Dotychczasowa kariera:</b></td><td class=tekst_gl valign=top>";
+      print "$rekord[kariera]";
+      print "</td></tr>";
+      print "</table>";
+
+      print "</td><td valign=top align=right width=200>";
+
+      $zdjecie = mysql_fetch_array(mysql_query("select adres,nazwa,zrodlo from zdjecia where id='$rekord[zdjecie]'"));
+      print "<table border=1 bordercolor=#0068d0 cellspacing=2 cellpadding=2 align=right>";
+      print "<tr><td bgcolor=#eeeeee align=center><img src=http://grafika.slask.e-basket.pl/$zdjecie[adres] alt='$zdjecie[nazwa]' border=1></td></tr>";
+      if($zdjecie[zrodlo]!="") {
+         print "<tr><td bgcolor=#eeeeee><a href=\"http://$zdjecie[zrodlo]\" class=male>$zdjecie[zrodlo]</a></td></tr>";
+      }
+      print "</table>";
+
+      print "</td></tr></table>";
+
+      print "<hr noshade size=1 color=#eeeeee>";
+      print "$rekord[charakterystyka]<br><br>";
+   }
+}
+
+function statystyki() {
+   global $zawodnik;
+   $gracz = mysql_fetch_array(mysql_query("select imie,nazwisko,klub,zdjecie from byligracze where id='$zawodnik'"));
+
+   if($gracz[klub]!="") {
+      print "<br><center><font class=duze>$gracz[imie] $gracz[nazwisko] ($gracz[klub])</font></CENTER><br>";
+   } else {
+      print "<br><center><font class=duze>$gracz[imie] $gracz[nazwisko]</font></CENTER><br>";
+   }
+   print "<table border=0 cellspacing=0 cellpadding=0>";
+   print "<tr><td align=left valign=top width=400 class=tekst>";
+   print "<hr size=1 color=#dfdfdf width=350 align=center>";
+   print "<center><a href=?poddzial=11&zawodnik=$zawodnik><b>Informacje o graczu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=?poddzial=11&zawodnik=$zawodnik&akcja=newsy>Newsy o graczu</b></a></center>";
+   print "<hr size=1 color=#dfdfdf width=350 align=center>";
+
+   print "<table border=0 cellspacing=0 cellpadding=0>";
+   print "<tr><td class=tekst width=200>";
+   $wez_staty_sum = mysql_query("select sum(min) as min,sum(pkt) as pkt,sum(c2) as c2,sum(w2) as w2,sum(c3) as c3,sum(w3) as w3,sum(c1) as c1,sum(w1) as w1,sum(z) as z,sum(a) as a,sum(p) as p,sum(s) as s,sum(b) as b,sum(f) as f from byligracze_stat where id_gracza='$zawodnik'");
+   $wez_staty_avg = mysql_query("select avg(min) as min,avg(pkt) as pkt,avg(c2) as c2,avg(w2) as w2,avg(c3) as c3,avg(w3) as w3,avg(c1) as c1,avg(w1) as w1,avg(z) as z,avg(a) as a,avg(p) as p,avg(s) as s,avg(b) as b,avg(f) as f from byligracze_stat where id_gracza='$zawodnik'");
+
+   $suma = mysql_fetch_array($wez_staty_sum);
+   $srednia = mysql_fetch_array($wez_staty_avg);
+
+   if($suma[w2]!=0) {
+      $procent2 = $suma[c2]/$suma[w2]*100;
+   } else {
+      $procent2 = 0;
+   }
+   if($suma[w3]!=0) {
+      $procent3 = $suma[c3]/$suma[w3]*100;
+   } else {
+      $procent3 = 0;
+   }
+   if($suma[w1]!=0) {
+      $procent1 = $suma[c1]/$suma[w1]*100;
+   } else {
+      $procent1 = 0;
+   }
+
+   print "<b>Aktualne statystyki</b><br>";
+   print mysql_num_rows(mysql_query("select id from byligracze_stat where id_gracza='$zawodnik'"))." meczów";
+   print "<br><font class=tekst>".round($srednia[min],1)." minuty";
+   print "<br><font class=tekst>".round($srednia[pkt],1)." punktu</font>";
+   print "<br><font class=tekst>$suma[c2]/$suma[w2] - ".round($procent2,1)."% za 2";
+   print "<br><font class=tekst>$suma[c3]/$suma[w3] - ".round($procent3,1)."% za 3";
+   print "<br><font class=tekst>$suma[c1]/$suma[w1] - ".round($procent1,1)."% za 1";
+   print "<br><font class=tekst>".round($srednia[z],1)." zbiórki";
+   print "<br><font class=tekst>".round($srednia[a],1)." asysty";
+   print "<br><font class=tekst>".round($srednia[p],1)." przechwytu";
+   print "<br><font class=tekst>".round($srednia[s],1)." straty";
+   print "<br><font class=tekst>".round($srednia[f],1)." faulu";
+   print "<br><font class=tekst>".round($srednia[b],1)." bloku";
+
+   print "</td><td align=right class=tekst valign=top>";
+
+   print "<b>Rekordy</b><br>";
+   $wez_staty_max = mysql_query("select max(min) as min,max(pkt) as pkt,max(c2) as c2,max(w2) as w2,max(c3) as c3,max(w3) as w3,max(c1) as c1,max(w1) as w1,max(z) as z,max(a) as a,max(p) as p,max(s) as s,max(b) as b,max(f) as f from byligracze_stat where id_gracza='$zawodnik'");
+   $max = mysql_fetch_array($wez_staty_max);
+   print "$max[min] minut";
+   print "<br>$max[pkt] punktów";
+   print "<br>$max[z] zbiórek";
+   print "<br>$max[a] asyst";
+   print "<br>$max[p] przechwytów";
+   print "<br>$max[s] strat";
+   print "<br>$max[f] fauli";
+   print "<br>$max[b] bloków";
+
+   print "</td></tr></table>";
+
+   print "</td><td valign=top align=right width=200>";
+   $zdjecie = mysql_fetch_array(mysql_query("select adres,nazwa,zrodlo from zdjecia where id='$gracz[zdjecie]'"));
+   print "<table border=1 bordercolor=#0068d0 cellspacing=2 cellpadding=2 align=right>";
+   print "<tr><td bgcolor=#eeeeee align=center><img src=http://grafika.slask.e-basket.pl/$zdjecie[adres] alt='$zdjecie[nazwa]' border=1></td></tr>";
+   if($zdjecie[zrodlo]!="") {
+      print "<tr><td bgcolor=#eeeeee><a href=\"http://$zdjecie[zrodlo]\" class=male>$zdjecie[zrodlo]</a></td></tr>";
+   }
+   print "</table>";
+   print "</td></tr></table>";
+
+   $mecz = mysql_query("select*from byligracze_stat where id_gracza='$zawodnik'");
+   print "<br><b>Mecz po meczu</b>";
+   print "<table border=0 cellpadding=0 cellspacing=1>";
+   print "<tr><td bgcolor=#dfdfdf class=kwarta width=70><b>Data</b></td><td bgcolor=#dfdfdf class=kwarta width=120><b>Przeciwnik</b></td><td bgcolor=#dfdfdf class=kwarta width=50><b>Wynik</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>Pkt</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>Min</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>2c</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>2w</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>3c</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>3w</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>1c</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>1w</b></td><td bgcolor=#dfdfdf class=kwarta width=30><b>Z</b></td><td bgcolor=#dfdfdf class=kwarta width=20><b>A</b></td><td bgcolor=#dfdfdf class=kwarta width=20><b>P</b></td><td bgcolor=#dfdfdf class=kwarta width=20><b>S</b></td><td bgcolor=#dfdfdf class=kwarta width=20><b>B</b></td><td bgcolor=#dfdfdf class=kwarta width=20><b>F</td></tr>";
+   while($rekord = mysql_fetch_array($mecz)) {
+      if($a%2==0) {
+         print "<tr><td bgcolor=#eeeeee class=kwarta>$rekord[data]</td><td bgcolor=#eeeeee class=kwarta>$rekord[przeciwnik]</td><td bgcolor=#eeeeee class=kwarta>$rekord[wynik]</td><td bgcolor=#eeeeee class=kwarta>$rekord[pkt]</td><td bgcolor=#eeeeee class=kwarta>$rekord[min]</td><td bgcolor=#eeeeee class=kwarta>$rekord[c2]</td><td bgcolor=#eeeeee class=kwarta>$rekord[w2]</td><td bgcolor=#eeeeee class=kwarta>$rekord[c3]</td><td bgcolor=#eeeeee class=kwarta>$rekord[w3]</td><td bgcolor=#eeeeee class=kwarta>$rekord[c1]</td><td bgcolor=#eeeeee class=kwarta>$rekord[w1]</td><td bgcolor=#eeeeee class=kwarta>$rekord[z]</td><td bgcolor=#eeeeee class=kwarta>$rekord[a]</td><td bgcolor=#eeeeee class=kwarta>$rekord[p]</td><td bgcolor=#eeeeee class=kwarta>$rekord[s]</td><td bgcolor=#eeeeee class=kwarta>$rekord[b]</td><td bgcolor=#eeeeee class=kwarta>$rekord[f]</td></tr>";
+      } else {
+         print "<tr><td bgcolor=#fafafa class=kwarta>$rekord[data]</td><td bgcolor=#fafafa class=kwarta>$rekord[przeciwnik]</td><td bgcolor=#fafafa class=kwarta>$rekord[wynik]</td><td bgcolor=#fafafa class=kwarta>$rekord[pkt]</td><td bgcolor=#fafafa class=kwarta>$rekord[min]</td><td bgcolor=#fafafa class=kwarta>$rekord[c2]</td><td bgcolor=#fafafa class=kwarta>$rekord[w2]</td><td bgcolor=#fafafa class=kwarta>$rekord[c3]</td><td bgcolor=#fafafa class=kwarta>$rekord[w3]</td><td bgcolor=#fafafa class=kwarta>$rekord[c1]</td><td bgcolor=#fafafa class=kwarta>$rekord[w1]</td><td bgcolor=#fafafa class=kwarta>$rekord[z]</td><td bgcolor=#fafafa class=kwarta>$rekord[a]</td><td bgcolor=#fafafa class=kwarta>$rekord[p]</td><td bgcolor=#fafafa class=kwarta>$rekord[s]</td><td bgcolor=#fafafa class=kwarta>$rekord[b]</td><td bgcolor=#fafafa class=kwarta>$rekord[f]</td></tr>";
+      }
+      $a++;
+   }
+   print "</table>";
+}
+
+function newsy() {
+   global $zawodnik;
+   $gracz = mysql_fetch_array(mysql_query("select imie,nazwisko,klub,zdjecie from byligracze where id='$zawodnik'"));
+
+   if($gracz[klub]!="") {
+      print "<br><center><font class=duze>$gracz[imie] $gracz[nazwisko] ($gracz[klub])</font></CENTER><br>";
+   } else {                                     
+      print "<br><center><font class=duze>$gracz[imie] $gracz[nazwisko]</font></CENTER><br>";
+   }
+   print "<table border=0 cellspacing=0 cellpadding=0>";
+   print "<tr><td align=left valign=top width=400 class=tekst>";
+   print "<hr size=1 color=#dfdfdf width=350 align=center>";
+   print "<center><a href=?poddzial=11&zawodnik=$zawodnik><b>Informacje o graczu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=?poddzial=11&zawodnik=$zawodnik&akcja=statystyki>Statystyki gracza</b></a></center>";
+   print "<hr size=1 color=#dfdfdf width=350 align=center>";
+
+   print "<!-- \/ \/ \/ \/ DO LINIJKI 210 \/ \/ \/ \/ //-->";
+   $do_news = mysql_fetch_array(mysql_query("select id from zawodnicy where imie='$gracz[imie]' AND nazwisko='$gracz[nazwisko]'"));
+   $pobierz = mysql_query("select id,godzina,dzien,miesiac,miesiac_num,rok,tytul,tresc,zdjecie,zrodlo,dzial,kto,email,rodzaj from newsy where zawodnik='$do_news[id]' OR zawodnik2='$do_news[id]' OR zawodnik3='$do_news[id]' order by id desc");
+   $ile = mysql_num_rows($pobierz);
+
+   print "<br><br><center><font class=srednie>Liczba newsów: $ile</font></center>";
+
+   print "</td><td valign=top align=right width=200>";
+   $zdjecie = mysql_fetch_array(mysql_query("select adres,nazwa,zrodlo from zdjecia where id='$gracz[zdjecie]'"));
+   print "<table border=1 bordercolor=#0068d0 cellspacing=2 cellpadding=2 align=right>";
+   print "<tr><td bgcolor=#eeeeee align=center><img src=http://grafika.slask.e-basket.pl/$zdjecie[adres] alt='$zdjecie[nazwa]' border=1></td></tr>";
+   if($zdjecie[zrodlo]!="") {
+      print "<tr><td bgcolor=#eeeeee><a href=\"http://$zdjecie[zrodlo]\" class=male>$zdjecie[zrodlo]</a></td></tr>";
+   }
+   print "</table>";
+   print "</td></tr></table>";
+
+   while ($rekord = mysql_fetch_array($pobierz)) {
+      $koment = mysql_query("select rodzic from komentarze where rodzic='$rekord[id]' AND auth=\"tak\"");
+      $ile_kom = mysql_num_rows($koment);
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 200) {
+         $polozenie = strpos($rekord[tresc],"...");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Więcej...]</a>";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+   include("techniczne/nagl_akt.php");
+   }
+}
+
+if($zawodnik) {
+   switch($akcja) {
+      case "statystyki":
+      statystyki();
+      break;
+      case "newsy":
+      newsy();
+      break;
+      default:
+      wyswietl($zawodnik, "byligracze");
+      break;
+   }
+} else {
+   glowna();
+}
+?>
+</BODY>
+</HTML>

@@ -1,0 +1,97 @@
+<?
+echo "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=kwarta valign=middle width=520 bgcolor=#dfdfdf align=right><b>[ Wyszukiwarka ]</b>&nbsp;</td></tr></table><br>";
+echo "<table border=0 cellspacing=0 cellpadding=0>";
+if($gdzie=="zdjecia") {
+   $to=" selected";
+}
+echo "<form action=index.php><tr><td class=tekst bgcolor=#eeeeee width=520><center><b>Szukaj:</b> <input type=text class=szukaj2 name=szukaj value=\"$szukaj\"> <select class=szukaj2 name=gdzie><option value=news>w newsach<option value=zdjecia$to>w galerii</select> <input type=submit class=szukaj2 value=Szukaj></center></td></tr></form>";
+echo "</table>";
+
+if($gdzie=="news") {
+   if(!$ktory) {
+      $ktory = 0;
+   }
+   $ktory_d = $ktory+15;
+   $ktory_d2 = $ktory+30;
+   $ktory_w = $ktory-15;
+
+   $newsy2 = mysql_query("select id,tytul,tresc,kto,email,godzina,dzien,miesiac,rok,dzial from newsy where tresc like '%$szukaj%' || tytul like '%$szukaj%' order by id");
+
+   $newsy = mysql_query("select id,tytul,tresc,kto,email,godzina,dzien,miesiac,rok,dzial from newsy where tresc like '%$szukaj%' || tytul like '%$szukaj%' order by id desc limit $ktory,15");
+   $ile = mysql_num_rows($newsy2);
+   if($ile == 0) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=520 class=kwarta bgcolor=#eeeeee>&nbsp; Nie znaleziono ¿adnych dokumentów dla wyra¿enia <b>$szukaj</b></td></tr></table>";
+      return false;
+   }
+
+   if(($ktory!=0) && ($ktory_d <= $ile)) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_w&gdzie=news><b>&#171;</b></a> [$ktory_w - $ktory]</td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee>[$ktory_d - $ktory_d2] <a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_d&gdzie=news><b>&#187;</b></a></td></tr></table>";
+   } elseif(($ktory==0) && ($ktory_d >= $ile)) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<b>&#171;</b></td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee><b>&#187;</b></td></tr></table>";
+   } elseif($ktory==0) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<b>&#171;</b></td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee>[$ktory_d - $ktory_d2] <a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_d&gdzie=news><b>&#187;</b></a></td></tr></table>";
+   } elseif($ktory_d >= $ile) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_w&gdzie=news><b>&#171;</b></a> [$ktory_w - $ktory]</td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee><b>&#187;</b></td></tr></table>";
+   }
+
+   print "<table border=0 cellpadding=0 cellspacing=0>";
+   while($rekord = mysql_fetch_array($newsy)) {
+      $koment = mysql_query("select*from komentarze where rodzic='$rekord[id]' AND auth=\"tak\"");
+      $ile_kom = mysql_num_rows($koment);
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 100) {
+         $polozenie = strpos($rekord[tresc],".");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?id=aktualnosci&news=$rekord[id]>[Ca³o¶æ...]</a>";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+      print "<br><table border=0 cellspacing=0 cellpadding=1>";
+      print "<tr><td background=http://grafika.slask.e-basket.pl/grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;$rekord[tytul]</td></tr>";
+      print "<tr><td class=data_newsa>$rekord[dzien] $rekord[miesiac] $rekord[rok] ($rekord[godzina]) - <b>$rekord[dzial]</b> - <a href=mailto:$rekord[email] class=autor_newsa>$rekord[kto]</a></font></td>";
+      print "<td align=right><a href=?news=$rekord[id]&id=aktualnosci#kom><font class=male>Komentarze($ile_kom)</font></a></td></tr>";
+      print "<tr><td width=500 class=tekst_gl colspan=2>";
+      print "$wypisz";
+      print "</td></tr>";
+      print "</table>";
+   }
+
+   if(($ktory!=0) && ($ktory_d <= $ile)) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_w&gdzie=news><b>&#171;</b></a> [$ktory_w - $ktory]</td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee>[$ktory_d - $ktory_d2] <a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_d&gdzie=news><b>&#187;</b></a></td></tr></table>";
+   } elseif(($ktory==0) && ($ktory_d >= $ile)) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<b>&#171;</b></td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee><b>&#187;</b></td></tr></table>";
+   } elseif($ktory==0) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<b>&#171;</b></td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee>[$ktory_d - $ktory_d2] <a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_d&gdzie=news><b>&#187;</b></a></td></tr></table>";
+   } elseif($ktory_d >= $ile) {
+      print "<br><table border=0 cellspacing=0 cellpadding=0><tr><td width=70 class=kwarta bgcolor=#eeeeee>&nbsp;<a class=kwarta href=?szukaj=$szukaj&ktory=$ktory_w&gdzie=news><b>&#171;</b></a> [$ktory_w - $ktory]</td><td bgcolor=#eeeeee class=kwarta width=380><center>Znaleziono <b>$ile</b> dokumentów dla wyra¿enia <b>$szukaj</b></td><td class=kwarta width=70 align=right bgcolor=#eeeeee><b>&#187;</b></td></tr></table>";
+   }
+}
+
+if($gdzie=="zdjecia") {
+   $zdjecia = mysql_query("select*from galeria where opis like '%$szukaj%' OR slowa like '%$szukaj%' order by id");
+
+   if(mysql_num_rows($zdjecia)!=0) {
+      print "<br><table border=0 bordercolor=black cellspacing=0 cellpadding=0><tr><td height=15 class=tekst valign=middle width=520 bgcolor=#eeeeee align=center><a name=galeria></a><center><b>Galeria zdjêæ dla wyra¿enia $szukaj</b> (".mysql_num_rows($zdjecia)." zdjêæ)</center></td></tr></table>";
+      print "<table border=0 cellspacing=3 cellpadding=3>";
+      $count = 1;
+
+      while ($rekord = mysql_fetch_array($zdjecia)) {
+         $link = "<a class=galeria href=javascript:duze('$rekord[id]')><img width=80 height=130 src=http://grafika.slask.e-basket.pl/$rekord[adres_male] border=0 alt='$rekord[opis]'></a>";
+         if($count == "5"){$count = 1;}
+
+         if($count == 1) {
+            print("<tr><td width=130>$link</td>");
+         } else if($count == 2) {
+            print("<td width=130>$link</td>");
+         } else if($count == 3) {
+            print("<td width=130>$link</td>");
+         } else if($count == 4) {
+            print("<td width=130>$link</td></tr>");
+         }
+         $count++;
+      }
+      print "</table>";
+   }
+}
+?>

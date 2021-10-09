@@ -1,0 +1,239 @@
+<HTML>
+<HEAD>
+<TITLE>   </TITLE>
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=iso-8859-2">
+<script langue=javascript>
+<!--
+function komentarze(id) {
+   window.open("komentarze_dopisz.php?news="+id, "Dodajkomentarz",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=540,menubar=no');
+}
+function wyslij(id) {
+   window.open("aktualnosci_wyslij.php?news="+id, "Wyslijnewsa",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=350,menubar=no');
+}
+//-->
+</script>
+</HEAD>
+<BODY>
+<?
+include("polacz.htm");
+$dzien = date("d",time());
+$miesiac = date("m",time());
+$rok = date("Y",time());
+
+function glowna() {
+   global $miesiac,$rok,$dzien;
+
+   include("wydarzenia.php");
+
+   $wez_top = mysql_query("select id,godzina,dzien,miesiac,miesiac_num,rok,edycja,tytul,tresc,zdjecie,zrodlo,dzial,kto,email from newsy where top='tak' AND dzien='$dzien' AND miesiac_num='$miesiac' AND rok='$rok' AND wysw != 'nie'");
+   if(mysql_num_rows($wez_top) != 0) {
+      $rekord = mysql_fetch_array($wez_top);
+      $koment = mysql_query("select*from komentarze where rodzic='$rekord[id]' AND auth='tak'");
+      $ile_kom = mysql_num_rows($koment);
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 200) {
+         $polozenie = strpos($rekord[tresc],"...");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Więcej...]</a>";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+      if($rekord[rodzaj] != "") {
+         $rodzaj = "$rekord[rodzaj]:";
+      } else {
+         $rodzaj = "";
+      }
+      print "<br><table border=0 cellspacing=0 cellpadding=1>";
+      print "<tr><td background=http://grafika.slask.e-basket.pl/grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;<font color=#CC3300>Top dnia:</font> $rodzaj $rekord[tytul]</td></tr>";
+      print "<tr><td bgcolor=#efefef class=data_newsa>$rekord[dzien] $rekord[miesiac] $rekord[rok] ($rekord[godzina]) - <b>$rekord[dzial]</b> - <a href=mailto:$rekord[email] class=autor_newsa>$rekord[kto]</a></font>";
+      if($rekord[edycja]!="") {
+         print "<br><font class=edycja_newsa>(edycja: $rekord[edycja])</font>";
+      }
+      print "</td>";
+      print "<td valign=top bgcolor=#efefef align=right class=male><a href=?news=$rekord[id]#komentarze><font class=male>Komentarze($ile_kom)</font></a> | <a href=javascript:komentarze($rekord[id])><font class=male>Dodaj</font></a></td></tr>";
+      print "<tr><td width=500 background=http://grafika.slask.e-basket.pl/grafika/top.jpg bgcolor=#efefef class=tekst_gl colspan=2>";
+      if($rekord[zdjecie] != "") {
+         $zdj = mysql_fetch_array(mysql_query("select adres,nazwa,wys,szer from zdjecia where id='$rekord[zdjecie]'"));
+         if($zdj[wys] == 0) {
+            $wys = "";
+         } else {
+            $wys = "height=$zdj[wys]";
+         }
+         print "<img src='http://grafika.slask.e-basket.pl/$zdj[adres]' alt='$zdj[nazwa]' width=$zdj[szer] $wys border=1 hspace=7 align=left>";
+      }
+      print "$wypisz";
+      if(($rekord[zrodlo] == "") || ($rekord[zrodlo] == " ")) {
+         print "";
+      } else {
+         print "<br><font class=male><font color=#999999>(Źródło:</font> <font class=male>$rekord[zrodlo]</font><font color=#999999>)</font></font>";
+      }
+      print "</td></tr>";
+      print "<tr><td bgcolor=#efefef></td><td bgcolor=#efefef></td></tr><tr><td bgcolor=#efefef></td><td bgcolor=#efefef></td></tr>";
+      print "</table>";
+      $wykluczony = $rekord[id];
+   }
+
+   $pobierz = mysql_query("select id,godzina,dzien,miesiac,miesiac_num,rok,edycja,tytul,tresc,zdjecie,zrodlo,dzial,kto,email,rodzaj from newsy where id!='$wykluczony' AND wysw='tak' order by id desc limit 0,20");
+   $ilu = mysql_num_rows($pobierz);
+   while ($rekord = mysql_fetch_array($pobierz)) {
+      $koment = mysql_query("select rodzic from komentarze where rodzic='$rekord[id]' AND auth=\"tak\"");
+      $ile_kom = mysql_num_rows($koment);
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 200) {
+         $polozenie = strpos($rekord[tresc],"...");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Więcej...]</a>";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+   include("techniczne/nagl_akt.php");
+   }
+   print "<center>";
+   print "<br><br><a href=?poddzial=6&m=$miesiac&r=$rok>Archiwum</a>";
+   print "<br><br><a target=_blank href=http://www.dobreprogramy.com><img src=http://grafika.slask.e-basket.pl/grafika/banery/programy2.gif border=0></a>";
+   ?>
+   <!-- stat.4u.pl NiE KaSoWaC --> 
+   <a target=_top href="http://stat.4u.pl/?wksslask"><img src="http://ad.stat.4u.pl/s4u.gif" border="0"></a>
+   <script language="javascript">
+   <!--
+   function s4upl() { return "";}
+   //-->
+   </script>
+   <script language="JavaScript" src="http://ad.stat.4u.pl/s.js?wksslask"></script>
+   <script language="JavaScript">
+   <!--
+   s4uext=s4upl();
+   document.write("<img src=\"http://stat.4u.pl/cgi-bin/s.cgi?i=wksslask"+s4uext+"\" width=1 height=1>")
+   //-->
+   </script>
+   <noscript><img src="http://stat.4u.pl/cgi-bin/s.cgi?i=wksslask&r=ns" width="1" height="1"></noscript>
+   <!-- stat.4u.pl KoNiEc -->
+   <br><br>
+<!-- stat.4u.pl NiE KaSoWaC --> 
+<a target=_top href="http://stat.4u.pl/?wksslask2"><img alt="" src="http://adstat.4u.pl/s4u.gif" border="0"></a> 
+<script language="JavaScript" type="text/javascript"> 
+<!-- 
+function s4upl() { return "&amp;r=er";} 
+//--> 
+</script> 
+<script language="JavaScript" type="text/javascript" src="http://adstat.4u.pl/s.js?wksslask2"></script> 
+<script language="JavaScript" type="text/javascript"> 
+<!-- 
+s4uext=s4upl(); 
+document.write('<img alt="" src="http://stat.4u.pl/cgi-bin/s.cgi?i=wksslask2'+s4uext+'" width="1" height="1">') 
+//--> 
+</script> 
+<noscript><img alt="" src="http://stat.4u.pl/cgi-bin/s.cgi?i=wksslask2&amp;r=ns" width="1" height="1"></noscript> 
+<!-- stat.4u.pl KoNiEc -->
+<script type="text/javascript" language="JavaScript" src="http://www.e-basket.pl/rss/ebasket.js"></script>
+   <?
+   print "</center>";
+}
+
+function wyswietl_newsa($news, $tabela = "newsy") {
+   global $dzien, $rok;
+   $pobierz = mysql_query("select*from $tabela where id='$news'");
+   $kliki = mysql_query("update newsy set kliki=kliki+1 where id='$news'");
+   while ($rekord = mysql_fetch_array($pobierz)) {
+      $wypisz = "$rekord[tresc]";
+      if(strlen($wypisz) >= 200) {
+         $polozenie = strpos($rekord[tresc],"...");
+         if($polozenie) {
+            $wypisz = substr($rekord[tresc],0,$polozenie)."...";
+         } else {
+            $wypisz = "$rekord[tresc]";
+         }
+      }
+      print "<br><table border=0 cellspacing=0 cellpadding=1>";
+      if($rekord[rodzaj]=="") {
+         print "<tr><td background=http://grafika.slask.e-basket.pl/grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;$rekord[tytul]</td></tr>";
+      } else {
+         print "<tr><td background=http://grafika.slask.e-basket.pl/grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;<i>$rekord[rodzaj]:</i> $rekord[tytul]</td></tr>";
+      }
+      print "<tr><td></td>";
+      print "<td align=right></td></tr>";
+      print "<tr><td></td></tr><tr><td></td></tr>";
+      print "<tr><td width=510 class=tekst colspan=2>";
+      if($rekord[zdjecie] != "") {
+         $zdj = mysql_fetch_array(mysql_query("select adres,nazwa,zrodlo,wys,szer from zdjecia where id='$rekord[zdjecie]'"));
+         if($zdj[wys] == 0) {
+            $wys = "";
+         } else {
+            $wys = "height=$zdj[wys]";
+         }
+         print "<table border=1 bordercolor=#0068d0 cellspacing=2 cellpadding=2 align=left>";
+         print "<tr><td bgcolor=#eeeeee align=center><img src=http://grafika.slask.e-basket.pl/$zdj[adres] alt='$zdj[nazwa]' width=$zdj[szer] $wys border=1></td></tr>";
+         if($zdj[zrodlo]!="") {
+            print "<tr><td bgcolor=#eeeeee><a href=\"http://$zdj[zrodlo]\" class=male>$zdj[zrodlo]</a></td></tr>";
+         }
+         print "</table>";
+      }
+      print "<b>$wypisz</b>";
+      print "<br><br>";
+      print substr($rekord[tresc],strlen($wypisz),strlen($rekord[tresc]));
+      print "<p align=right><b><font class=tekst>$rekord[kto]</b><br><a href=mailto:$rekord[email]>$rekord[email]</a></p>";
+      print "</td></tr>";
+      print "</table>";
+      print "<br><font class=male2><b>Data dodania:</b> $rekord[dzien] $rekord[miesiac] $rekord[rok], godz. $rekord[godzina]";
+      if($rekord[edycja]!="") {
+         print "<br><font class=male2><b>Edycja:</b> $rekord[edycja]";
+      }
+      if($rekord[zrodlo]!="") {
+         print "<br><font class=male2><b>Źródło wiadomości:</b> $rekord[zrodlo]</font>";
+      }
+      print "<br><br><table border=0 cellpadding=0 cellspacing=0>";
+      print "<tr><td align=left width=125 bgcolor=#eeeeee><a class=czarny href=javascript:wyslij($rekord[id])>Wyślij newsa</a></td><td align=center width=175 bgcolor=#eeeeee><a class=czarny href=javascript:komentarze($rekord[id])>Dodaj komentarz</a></td><td align=right width=225 bgcolor=#eeeeee class=tekst>Wypowiedz się na <a href=http://lista.slask.e-basket.pl class=czarny><b>liście dyskusyjnej</b></a>!</td></tr>";
+      print "</table><br>";
+      $koment = mysql_query("select*from komentarze where rodzic='$news' AND auth=\"tak\" order by id desc");
+      $sa_kom = mysql_num_rows($koment);
+      if($sa_kom != 0) {
+         print "<a name=komentarze></a><font class=waszekom>Wasze komentarze:</font><br>";
+         print "<table border=1 bordercolor=white cellpadding=1 cellspacing=1>";
+         $a=0;
+         while ($rekord3 = mysql_fetch_array($koment)) {
+            $ilosckom = mysql_query("select ilosc,vip from kom_rejestracja where nick='$rekord3[kto]'");
+            if(mysql_num_rows($ilosckom)!=0) {
+               $ilekom = mysql_fetch_array(mysql_query("select ilosc from kom_rejestracja where nick='$rekord3[kto]'"));
+               $ilosc = "<font class=male color=#aaaaaa title=\"Ilość dodanych komentarzy\">($ilekom[ilosc])</font>";
+            } else {
+               $ilosc = "";
+            }
+            if(mysql_num_rows(mysql_query("select vip from kom_rejestracja where nick='$rekord3[kto]' AND vip='tak'"))!=0) {
+               $vip = "<img border=0 valign=0 src=http://grafika.slask.e-basket.pl/vip.gif width=15 height=5 vspace=0 hspace=0>";
+            } else {
+               $vip = "";
+            }
+            if($rekord3[email]!="") {
+               $kto = "<center><a href=mailto:$rekord3[email]><font class=kwarta color=#0068d0><b>$rekord3[kto]</b></font></a> $ilosc<br><a class=male href=javascript:zglos($rekord3[id])><img border=0 src=http://grafika.slask.e-basket.pl/grafika/krzyzyk.gif width=5 height=5 alt=\"Zgłoś moderatorowi ten komentarz, jeśli uważasz, że jego treść nie nadaje się do serwisu...\"></a> $vip </center>";
+            } else {
+               $kto = "<center> <b><font class=kwarta color=#0068d0>$rekord3[kto]</font></b> $ilosc<br><a class=male href=javascript:zglos($rekord3[id])><img border=0 src=http://grafika.slask.e-basket.pl/grafika/krzyzyk.gif width=5 height=5 alt=\"Zgłoś moderatorowi ten komentarz, jeśli uważasz, że jego treść nie nadaje się do serwisu...\" vspace=0 hspace=0></a> $vip</center>";
+            }
+            if($a%2==0) {
+               print "<tr><td valign=middle width=100 bgcolor=#eeeeee class=tekst_gl>$kto</td>";
+               print "<td class=tekst_gl bgcolor=#eeeeee>$rekord3[tresc]</td></tr>";
+            } else {
+               print "<tr><td valign=middle width=100 bgcolor=#fafafa class=tekst_gl>$kto</td>";
+               print "<td bgcolor=#fafafa class=tekst_gl>$rekord3[tresc]</td></tr>";
+            }
+         $a++;
+         }
+         print "</table>";
+         print "<br><font class=kwarta><i>Publikowane komentarze są prywatnymi opiniami użytkowników portalu. <br>Redkacja serwisu SLASK.e-basket.pl nie ponosi odpowiedzialności za treść opinii.</i></font>";
+      } else {
+         print "Nie ma jeszcze komentarzy. Zapraszamy do dodania swojego!";
+      }
+   }
+}
+
+
+if($news) {
+   wyswietl_newsa($news, "newsy");
+} else {
+   glowna();
+}
+?>
+</BODY>
+</HTML>
+
