@@ -1,0 +1,11 @@
+<tr><td class=male>Arabas Grzegorz</td><td class=male>190 cm</td><td class=male>24</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Broda Rados³aw</td><td class=male>197 cm</td><td class=male>25</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Chromicz Ireneusz</td><td class=male>197 cm</td><td class=male>25</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Foko Samuel</td><td class=male>180 cm</td><td class=male>26</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Frankowski Miros³aw</td><td class=male>196 cm</td><td class=male>27</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Kruk S³awomir</td><td class=male>197 cm</td><td class=male>25</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Kuzian Marcin</td><td class=male>203 cm</td><td class=male>28</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Pluta Piotr</td><td class=male>192 cm</td><td class=male>20</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Sroka Marcin</td><td class=male>200 cm</td><td class=male>21</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Szczeœniak Pawe³</td><td class=male>187 cm</td><td class=male>27</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Szudy Damian</td><td class=male>206 cm</td><td class=male>20</td><td class=male>center</td></tr>

@@ -1,0 +1,12 @@
+<tr><td class=male>Bazelevskij Dimitri</td><td class=male>193 cm</td><td class=male>31</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Celej Tomasz</td><td class=male>196 cm</td><td class=male>24</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=male>Doli雟ki Zbigniew</td><td class=male>211 cm</td><td class=male>21</td><td class=male>center</td></tr>
+<tr><td class=male>Duda Jerzy</td><td class=male>204 cm</td><td class=male>21</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=male>Grant Maseo</td><td class=male>198 cm</td><td class=male>23</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=male>Lepinaitis Andrius</td><td class=male>184 cm</td><td class=male>20</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Lyday Terrell</td><td class=male>190 cm</td><td class=male>22</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Marculewicz Zbigniew</td><td class=male>205 cm</td><td class=male>24</td><td class=male>skrzyd這wy/center</td></tr>
+<tr><td class=male>Moore Johnny</td><td class=male>205 cm</td><td class=male>28</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=male>Seweryn ㄆkasz</td><td class=male>196 cm</td><td class=male>20</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Stiga Vaidas</td><td class=male>201 cm</td><td class=male>28</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=male>Uspenskij Gennadij</td><td class=male>210 cm</td><td class=male>33</td><td class=male>skrzyd這wy/center</td></tr>

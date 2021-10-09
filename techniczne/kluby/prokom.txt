@@ -1,0 +1,13 @@
+<tr><td class=male>Alexander Gary</td><td class=male>201 cm</td><td class=male>32</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Ansley Michael</td><td class=male>204 cm</td><td class=male>35</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Blumczyñski Daniel</td><td class=male>191 cm</td><td class=male>26</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Dylewicz Filip</td><td class=male>202 cm</td><td class=male>22</td><td class=male>skrzyd³owyv
+<tr><td class=male>Gregov Alan</td><td class=male>191 cm</td><td class=male>32</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Jankowski Tomasz</td><td class=male>206 cm</td><td class=male>29</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Markovic Dragan</td><td class=male>202 cm</td><td class=male>28</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Maskoliunas Darius</td><td class=male>195 cm</td><td class=male>31</td><td class=male>obroñca</td></tr>
+<tr><td class=male>McNaull Joseph</td><td class=male>208 cm</td><td class=male>29</td><td class=male>center</td></tr>
+<tr><td class=male>Miliciæ Igor</td><td class=male>196 cm</td><td class=male>25</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Potulski Bartosz</td><td class=male>186 cm</td><td class=male>21</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Vrankoviæ Josip</td><td class=male>199 cm</td><td class=male>33</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Wilczek Tomasz</td><td class=male>197 cm</td><td class=male>28</td><td class=male>obroñca/skrzyd³owy</td></tr>

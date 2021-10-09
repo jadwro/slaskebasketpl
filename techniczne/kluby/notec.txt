@@ -1,0 +1,13 @@
+<tr><td class=male>Austin Alex</td><td class=male>198 cm</td><td class=male>35</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Czaska Piotr</td><td class=male>197 cm</td><td class=male>36</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Frasunkiewicz P.</td><td class=male>201 cm</td><td class=male>23</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Kalinowski Jaros³aw</td><td class=male>180 cm</td><td class=male>23</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Marcinkowski J.</td><td class=male>200 cm</td><td class=male>38</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Mro¿ek Tomasz</td><td class=male>199 cm</td><td class=male>24</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Owens Geoffrey</td><td class=male>210 cm</td><td class=male>24</td><td class=male>center</td></tr>
+<tr><td class=male>Radke Hubert</td><td class=male>208 cm</td><td class=male>21</td><td class=male>center</td></tr>
+<tr><td class=male>Skonieczny Krystian</td><td class=male>205 cm</td><td class=male>20</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Szubarga Krzysztof</td><td class=male>180 cm</td><td class=male>19</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Œwi¹tek Maciej</td><td class=male>194 cm</td><td class=male>25</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Welsch Petr</td><td class=male>184 cm</td><td class=male>26</td><td class=male>obroñca</td></tr>
+<tr><td class=male>¯ytko £ukasz</td><td class=male>181 cm</td><td class=male>21</td><td class=male>obroñca</td></tr>

@@ -1,0 +1,377 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>   </TITLE>
+
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=iso-8859-2">
+
+<script langue=javascript>
+
+<!--
+
+function komentarze(id) {
+
+   window.open("komentarze_dopisz.php3?news="+id, "Dodajkomentarz",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=350,menubar=no');
+
+}
+
+function wyslij(id) {
+
+   window.open("aktualnosci_wyslij.php3?news="+id, "Wyslijnewsa",'align=center,toolbar=no,status=no,location=no,directories=no,resizable=no,scrollbars=no,width=350,height=350,menubar=no');
+
+}
+
+//-->
+
+</script>
+
+</HEAD>
+
+<BODY>
+
+<?
+
+include("polacz.htm");
+
+$dzien = date("d",time());
+
+$miesiac = date("m",time());
+
+$rok = date("Y",time());
+
+
+
+function glowna() {
+
+   global $miesiac,$rok,$dzien;
+
+
+
+   $wez_top = mysql_query("select id,godzina,dzien,miesiac,miesiac_num,rok,edycja,tytul,tresc,zdjecie,zrodlo,dzial,kto,email from newsy where top='tak' AND dzien='$dzien' AND miesiac_num='$miesiac' AND rok='$rok'");
+
+   if(mysql_num_rows($wez_top) != 0) {
+
+      $rekord = mysql_fetch_array($wez_top);
+
+      $koment = mysql_query("select*from komentarze where rodzic='$rekord[id]' AND auth='tak'");
+
+      $ile_kom = mysql_num_rows($koment);
+
+      $wypisz = "$rekord[tresc]";
+
+      if(strlen($wypisz) >= 200) {
+
+         $polozenie = strpos($rekord[tresc],"...");
+
+         if($polozenie) {
+
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Więcej...]</a>";
+
+         } else {
+
+            $wypisz = "$rekord[tresc]";
+
+         }
+
+      }
+
+      if($rekord[rodzaj] != "") {
+
+         $rodzaj = "$rekord[rodzaj]:";
+
+      } else {
+
+         $rodzaj = "";
+
+      }
+
+      print "<br><table border=0 cellspacing=0 cellpadding=1>";
+
+      print "<tr><td background=grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;<font color=#CC3300>Top dnia:</font> $rodzaj $rekord[tytul]</td></tr>";
+
+      print "<tr><td bgcolor=#efefef class=data_newsa>$rekord[dzien] $rekord[miesiac] $rekord[rok] ($rekord[godzina]) - <b>$rekord[dzial]</b> - <a href=mailto:$rekord[email] class=autor_newsa>$rekord[kto]</a></font>";
+
+      if($rekord[edycja]!="") {
+
+         print "<br><font class=edycja_newsa>(edycja: $rekord[edycja])</font>";
+
+      }
+
+      print "</td>";
+
+      print "<td valign=top bgcolor=#efefef align=right class=male><a href=?news=$rekord[id]#komentarze><font class=male>Komentarze($ile_kom)</font></a> | <a href=javascript:komentarze($rekord[id])><font class=male>Dodaj</font></a></td></tr>";
+
+      print "<tr><td width=500 background=grafika/top.jpg bgcolor=#efefef class=tekst_gl colspan=2>";
+
+      if($rekord[zdjecie] != "") {
+
+         $zdj = mysql_fetch_array(mysql_query("select adres,nazwa from zdjecia where id='$rekord[zdjecie]'"));
+
+         print "<img src='$zdj[adres]' alt='$zdj[nazwa]' width=70 border=1 hspace=7 align=left>";
+
+      }
+
+      print "$wypisz";
+
+      if(($rekord[zrodlo] == "") || ($rekord[zrodlo] == " ")) {
+
+         print "";
+
+      } else {
+
+         print "<br><font class=male><font color=#999999>(Źródło:</font> <font class=male>$rekord[zrodlo]</font><font color=#999999>)</font></font>";
+
+      }
+
+      print "</td></tr>";
+
+      print "<tr><td bgcolor=#efefef></td><td bgcolor=#efefef></td></tr><tr><td bgcolor=#efefef></td><td bgcolor=#efefef></td></tr>";
+
+      print "</table>";
+
+      $wykluczony = $rekord[id];
+
+   }
+
+
+
+   $pobierz = mysql_query("select id,godzina,dzien,miesiac,miesiac_num,rok,edycja,tytul,tresc,zdjecie,zrodlo,dzial,kto,email,rodzaj from newsy where id!='$wykluczony' order by id desc limit 0,15");
+
+   $ilu = mysql_num_rows($pobierz);
+
+   while ($rekord = mysql_fetch_array($pobierz)) {
+
+      $koment = mysql_query("select rodzic from komentarze where rodzic='$rekord[id]' AND auth=\"tak\"");
+
+      $ile_kom = mysql_num_rows($koment);
+
+      $wypisz = "$rekord[tresc]";
+
+      if(strlen($wypisz) >= 200) {
+
+         $polozenie = strpos($rekord[tresc],"...");
+
+         if($polozenie) {
+
+            $wypisz = substr($rekord[tresc],0,$polozenie)."... <a href=?news=$rekord[id]>[Więcej...]</a>";
+
+         } else {
+
+            $wypisz = "$rekord[tresc]";
+
+         }
+
+      }
+
+   include("techniczne/nagl_akt.php");
+
+   }
+
+   print "<center>";
+
+   print "<br><br><a href=?poddzial=6&m=$miesiac&r=$rok>Archiwum</a>";
+
+   
+
+   
+
+      print "<br><br><a target=_blank href=http://80.72.35.132/~panicz/abk-company/glosujna.php?id=60>";
+
+   print "<img border=0 src=http://www.inetcom.pl/images/baner.gif width=400 height=100></a>";
+  
+   
+   print "<br><br>";
+   
+    ?>
+	
+   <a target=_blank href=http://www.dobreprogramy.com>
+
+   <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=5,0,0,0" ID=Untitled WIDTH=400 HEIGHT=50>
+
+   <PARAM NAME=movie VALUE="grafika/banery/dobreprogramy.swf">
+
+   <PARAM NAME=quality VALUE=high>
+
+   <PARAM NAME=menu VALUE=false>
+
+   <PARAM NAME=loop VALUE=true>
+
+   <EMBED src="grafika/banery/dobreprogramy.swf" loop=false quality=high WIDTH=400 HEIGHT=50 TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+
+   </EMBED>
+
+   </OBJECT>
+
+   </a>
+
+   <?
+
+   print "<br><br><a target=_top href=http://stat.webmedia.pl/cgi-bin/anal?wksslask>";
+
+   print "<img border=0 src=http://stat.webmedia.pl/cgi-bin/stat?wksslask&stat4u alt=stat4u width=85 height=20></a>";
+
+   print "<br><br>";
+
+   include"/vol/vol1/www_noarch/www.slask.e-basket.pl/istat/stat.php";
+
+   print "</center>";
+
+}
+
+
+
+function wyswietl_newsa($news, $tabela = "newsy") {
+
+   global $dzien, $rok;
+
+   $pobierz = mysql_query("select*from $tabela where id='$news'");
+
+   $kliki = mysql_query("update newsy set kliki=kliki+1 where id='$news'");
+
+   while ($rekord = mysql_fetch_array($pobierz)) {
+
+      $wypisz = "$rekord[tresc]";
+
+      if(strlen($wypisz) >= 200) {
+
+         $polozenie = strpos($rekord[tresc],"...");
+
+         if($polozenie) {
+
+            $wypisz = substr($rekord[tresc],0,$polozenie)."...";
+
+         } else {
+
+            $wypisz = "$rekord[tresc]";
+
+         }
+
+      }
+
+      print "<br><table border=0 cellspacing=0 cellpadding=1>";
+
+      if($rekord[rodzaj]=="") {
+
+         print "<tr><td background=grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;$rekord[tytul]</td></tr>";
+
+      } else {
+
+         print "<tr><td background=grafika/kropkinews.jpg class=tytul_newsa width=515 colspan=2 height=20>&nbsp;<i>$rekord[rodzaj]:</i> $rekord[tytul]</td></tr>";
+
+      }
+
+      print "<tr><td></td>";
+
+      print "<td align=right></td></tr>";
+
+      print "<tr><td></td></tr><tr><td></td></tr>";
+
+      print "<tr><td width=510 class=tekst colspan=2>";
+
+      if($rekord[zdjecie] != "") {
+
+         $zdj = mysql_fetch_array(mysql_query("select adres,nazwa,zrodlo from zdjecia where id='$rekord[zdjecie]'"));
+
+         print "<table border=1 bordercolor=#0068d0 cellspacing=2 cellpadding=2 align=left>";
+
+         print "<tr><td bgcolor=#eeeeee align=center><img src=$zdj[adres] alt='$zdj[nazwa]' width=71 border=1></td></tr>";
+
+         if($zdj[zrodlo]!="") {
+
+            print "<tr><td bgcolor=#eeeeee><a href=\"http://$zdj[zrodlo]\" class=male>$zdj[zrodlo]</a></td></tr>";
+
+         }
+
+         print "</table>";
+
+      }
+
+      print "<b>$wypisz</b>";
+
+      print "<br><br>";
+
+      print substr($rekord[tresc],strlen($wypisz),strlen($rekord[tresc]));
+
+      print "<p align=right><b><font class=tekst>$rekord[kto]</b><br><a href=mailto:$rekord[email]>$rekord[email]</a></p>";
+
+      print "</td></tr>";
+
+      print "</table>";
+
+      print "<br><font class=male2><b>Data dodania:</b> $rekord[dzien] $rekord[miesiac] $rekord[rok], godz. $rekord[godzina]";
+
+      if($rekord[edycja]!="") {
+
+         print "<br><font class=male2><b>Edycja:</b> $rekord[edycja]";
+
+      }
+
+      if($rekord[zrodlo]!="") {
+
+         print "<br><font class=male2><b>Źródło wiadomości:</b> $rekord[zrodlo]</font>";
+
+      }
+
+      print "<br><br><table border=0 cellpadding=0 cellspacing=0>";
+
+      print "<tr><td align=left width=175 bgcolor=#eeeeee><a class=czarny href=javascript:wyslij($rekord[id])>Wyślij newsa</a></td><td align=center width=175 bgcolor=#eeeeee><a class=czarny href=javascript:komentarze($rekord[id])>Dodaj komentarz</a></td><td align=right width=175 bgcolor=#eeeeee class=tekst>Porozmawiaj na <a href=http://forum.e-basket.pl/viewboard.php?BoardID=11 class=czarny><b>forum</b></a>!</td></tr>";
+
+      print "</table><br>";
+
+      $koment = mysql_query("select*from komentarze where rodzic='$news' AND auth=\"tak\" order by id desc");
+
+      $sa_kom = mysql_num_rows($koment);
+
+      if($sa_kom != 0) {
+
+         print "<a name=komentarze></a><font class=duze>Wasze komentarze:</font><br>";
+
+         print "<table border=0 cellpadding=0 cellspacing=0>";
+
+         while ($rekord3 = mysql_fetch_array($koment)) {
+
+            print "<tr><td class=male>$rekord3[data] $rekord3[godzina]</td></tr>";
+
+            print "<tr><td class=tekst><a href=mailto:$rekord3[email] class=czarny><b>$rekord3[kto]</a></td></tr>";
+
+            print "<tr><td class=tekst>$rekord3[tresc]</td></tr>";
+
+            print "<tr><td colspan=2 width=490><hr size=1></td></tr>";
+
+         }
+
+         print "</table>";
+
+      } else {
+
+         print "Nie ma jeszcze komentarzy. Zapraszam do dodania swojego!";
+
+      }
+
+   }
+
+}
+
+
+
+
+
+if($news) {
+
+   wyswietl_newsa($news, "newsy");
+
+} else {
+
+   glowna();
+
+}
+
+?>
+
+</BODY>
+
+</HTML>
+
+
+

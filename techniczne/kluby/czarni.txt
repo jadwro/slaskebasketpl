@@ -1,0 +1,12 @@
+<tr><td class=male>Bajdakow Rus³an</td><td class=male>200 cm</td><td class=male>28</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Bia³ek Zbigniew</td><td class=male>202 cm</td><td class=male>20</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Cywiñski Dariusz</td><td class=male>200 cm</td><td class=male>25</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Frank Rafa³</td><td class=male>196 cm</td><td class=male>22</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Hlebowicki Micha³</td><td class=male>203 cm</td><td class=male>25</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Juszkin Oleg</td><td class=male>198 cm</td><td class=male>27</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Koœciuk Robert</td><td class=male>182 cm</td><td class=male>33</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Krivonos Andriej</td><td class=male>186 cm</td><td class=male>27</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Metstak Margus</td><td class=male>205 cm</td><td class=male>41</td><td class=male>center</td></tr>
+<tr><td class=male>Nosewicz Piotr</td><td class=male>192 cm</td><td class=male>21</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Stok³osa Marcin</td><td class=male>188 cm</td><td class=male>25</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Vaskys Augenijus</td><td class=male>196 cm</td><td class=male>30</td><td class=male>obroñca</td></tr>

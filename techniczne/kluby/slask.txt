@@ -1,0 +1,14 @@
+<tr><td class=male>Adamek Andrzej</td><td class=male>190 cm</td><td class=male>30</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Adomaitis Dainius</td><td class=male>201 cm</td><td class=male>28</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Bajer Artur</td><td class=male>195 cm</td><td class=male>19</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Bigus Rafa³</td><td class=male>215 cm</td><td class=male>25</td><td class=male>center</td></tr>
+<tr><td class=male>Hawkins Michael</td><td class=male>182 cm</td><td class=male>29</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Ko¿eniec Oleg</td><td class=male>210 cm</td><td class=male>24</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Mi³osierdow A.</td><td class=male>198 cm</td><td class=male>21</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Pacesas Tomas</td><td class=male>190 cm</td><td class=male>30</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Skibniewski Robert</td><td class=male>182 cm</td><td class=male>18</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Szybilski Piotr</td><td class=male>206 cm</td><td class=male>29</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Tomczyk Dominik</td><td class=male>204 cm</td><td class=male>28</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Wiekiera Pawe³</td><td class=male>205 cm</td><td class=male>25</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Wright Michael</td><td class=male>201 cm</td><td class=male>22</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Zieliñski Maciej</td><td class=male>198 cm</td><td class=male>31</td><td class=male>obroñca/skrzyd³owy</td></tr>

@@ -1,0 +1,14 @@
+<tr><td class=male>Bacik Mariusz</td><td class=male>207 cm</td><td class=male>30</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Cooper Duane</td><td class=male>185 cm</td><td class=male>32</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Czubek Dominik</td><td class=male>178 cm</td><td class=male>27</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Delalic Amir</td><td class=male>210 cm</td><td class=male>33</td><td class=male>center</td></tr>
+<tr><td class=male>Dryja Krzysztof</td><td class=male>210 cm</td><td class=male>28</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Golañski Artur</td><td class=male>196 cm</td><td class=male>27</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Jagoda £ukasz</td><td class=male>186 cm</td><td class=male>23</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Korytek Kordian</td><td class=male>212 cm</td><td class=male>27</td><td class=male>center</td></tr>
+<tr><td class=male>Lofton Lewis</td><td class=male>191 cm</td><td class=male>30</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Pluta Andrzej</td><td class=male>182 cm</td><td class=male>28</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Rubczenko Roman</td><td class=male>203 cm</td><td class=male>28</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Suski Tomasz</td><td class=male>192 cm</td><td class=male>27</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Tankosic Dra¿en</td><td class=male>195 cm</td><td class=male>27</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Trybañski Cezary</td><td class=male>215 cm</td><td class=male>22</td><td class=male>center</td></tr>

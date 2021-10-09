@@ -1,0 +1,11 @@
+<tr><td class=polecam>Budzinauskas M.</td><td class=male>198 cm</td><td class=male>28</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=polecam>Czeczuro Wadim</td><td class=male>197 cm</td><td class=male>33</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=polecam>Darnikowski Jaros豉w</td><td class=male>198 cm</td><td class=male>30</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=polecam>Furman Konstantin</td><td class=male>206 cm</td><td class=male>26</td><td class=male>center</td></tr>
+<tr><td class=polecam>Hester Jerry</td><td class=male>198 cm</td><td class=male>26</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=polecam>Kempski Robert</td><td class=male>188 cm</td><td class=male>25</td><td class=male>obro鎍a</td></tr>
+<tr><td class=polecam>Krzyka豉 Jacek</td><td class=male>189 cm</td><td class=male>24</td><td class=male>obro鎍a</td></tr>
+<tr><td class=polecam>Morris Kevin</td><td class=male>183 cm</td><td class=male>24</td><td class=male>rozgrywaj鉍y</td></tr>
+<tr><td class=polecam>Parze雟ki Dariusz</td><td class=male>206 cm</td><td class=male>33</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=polecam>Szawarski Wojciech</td><td class=male>195 cm</td><td class=male>26</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=polecam>Tomaszewski B.</td><td class=male>202 cm</td><td class=male>29</td><td class=male>skrzyd這wy/center</td></tr>

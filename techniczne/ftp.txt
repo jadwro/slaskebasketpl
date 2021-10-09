@@ -1,0 +1,21 @@
+FTP
+
+host: 213.77.40.30
+login: mazur
+pass: 123mazur453
+katalog: upload
+
+
+
+
+HOST: 213.218.116.164
+LOG: eb_slask
+PASS: HAJK289
+
+
+
+
+sql
+HOST: 192.168.11.102
+LOG: eb_slask
+PASS: sd345@#

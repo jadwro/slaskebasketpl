@@ -1,0 +1,14 @@
+<tr><td class=male>Czosnowski Pawe³</td><td class=male>187 cm</td><td class=male>30</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Grudziñski Wiktor</td><td class=male>208 cm</td><td class=male>24</td><td class=male>center</td></tr>
+<tr><td class=male>Havrilla James</td><td class=male>210 cm</td><td class=male>33</td><td class=male>center</td></tr>
+<tr><td class=male>Jeklin Walter</td><td class=male>187 cm</td><td class=male>32</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Jurkunas Andrius</td><td class=male>205 cm</td><td class=male>26</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Kalamiza Goran</td><td class=male>184 cm</td><td class=male>28</td><td class=male>rozgrywaj¹cy</td></tr>
+<tr><td class=male>Karwowski Leszek</td><td class=male>205 cm</td><td class=male>27</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Mi³oszewski A.</td><td class=male>202 cm</td><td class=male>29</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Pacocha Robert</td><td class=male>195 cm</td><td class=male>23</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Polanowski Micha³</td><td class=male>203 cm</td><td class=male>21</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Rospara Tomasz</td><td class=male>206 cm</td><td class=male>23</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Sidor Krzysztof</td><td class=male>194 cm</td><td class=male>27</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Taylor John</td><td class=male>196 cm</td><td class=male>29</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Tenys Alvydas</td><td class=male>210 cm</td><td class=male>27</td><td class=male>center</td></tr>

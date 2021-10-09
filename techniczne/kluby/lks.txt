@@ -1,0 +1,12 @@
+<tr><td class=male>Atkins Rashid</td><td class=male>182 cm</td><td class=male>27</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Ignatowicz Piotr</td><td class=male>198 cm</td><td class=male>27</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Miszczuk Marek</td><td class=male>211 cm</td><td class=male>24</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Morkowski Robert</td><td class=male>200 cm</td><td class=male>27</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Nizio³ Piotr</td><td class=male>190 cm</td><td class=male>33</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Nowak Micha³</td><td class=male>198 cm</td><td class=male>22</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Petrovic Dalibor</td><td class=male>197 cm</td><td class=male>27</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Robak Artur</td><td class=male>208 cm</td><td class=male>23</td><td class=male>center</td></tr>
+<tr><td class=male>Soczewski Arkadiusz</td><td class=male>200 cm</td><td class=male>20</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Stulga Gintaras</td><td class=male>210 cm</td><td class=male>29</td><td class=male>center</td></tr>
+<tr><td class=male>Turner Kevin</td><td class=male>188 cm</td><td class=male>27</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Wiliñski Piotr</td><td class=male>180 cm</td><td class=male>19</td><td class=male>rozgrywaj¹cy</td></tr>

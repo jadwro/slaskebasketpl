@@ -1,0 +1,13 @@
+<tr><td class=male>B豉szczyk Bart這miej</td><td class=male>208 cm</td><td class=male>20</td><td class=male>skrzyd這wy/center</td></tr>
+<tr><td class=male>Cieleb隕 Tomasz</td><td class=male>203 cm</td><td class=male>26</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=male>Karwanien Aleksiej</td><td class=male>199 cm</td><td class=male>28</td><td class=male>obro鎍a/skrzyd這wy</td></tr>
+<tr><td class=male>Kazlauskas Arnas</td><td class=male>204 cm</td><td class=male>26</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=male>Kr鏊ik Wojciech</td><td class=male>186 cm</td><td class=male>41</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Kwiatkowski ㄆkasz</td><td class=male>205 cm</td><td class=male>23</td><td class=male>center</td></tr>
+<tr><td class=male>Majchrzak Wojciech</td><td class=male>198 cm</td><td class=male>28</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=male>Paprocki Piotr</td><td class=male>188 cm</td><td class=male>20</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Sinielnikow Andrzej</td><td class=male>193 cm</td><td class=male>33</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Williams Marcus</td><td class=male>186 cm</td><td class=male>27</td><td class=male>obro鎍a</td></tr>
+<tr><td class=male>Wilson Lee</td><td class=male>210 cm</td><td class=male>27</td><td class=male>center</td></tr>
+<tr><td class=male>真k Robert</td><td class=male>204 cm</td><td class=male>22</td><td class=male>skrzyd這wy</td></tr>
+<tr><td class=male>真rawski Wojciech</td><td class=male>199 cm</td><td class=male>26</td><td class=male>skrzyd這wy</td></tr>

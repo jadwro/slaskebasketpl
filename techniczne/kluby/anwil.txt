@@ -1,0 +1,13 @@
+<tr><td class=male>Andruszka Marek</td><td class=male>204 cm</td><td class=male>28</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Anzulovic Vladimir</td><td class=male>188 cm</td><td class=male>24</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Cieœlak Marcin</td><td class=male>182 cm</td><td class=male>22</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Griszczuk Igor</td><td class=male>194 cm</td><td class=male>37</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Kul Aleksander</td><td class=male>213 cm</td><td class=male>27</td><td class=male>center</td></tr>
+<tr><td class=male>Nordgaard Jeff</td><td class=male>200 cm</td><td class=male>29</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>O'Bannon Edward</td><td class=male>203 cm</td><td class=male>29</td><td class=male>skrzyd³owy</td></tr>
+<tr><td class=male>Prawica Roman</td><td class=male>200 cm</td><td class=male>31</td><td class=male>obroñca/skrzyd³owy</td></tr>
+<tr><td class=male>Santangelo Matt</td><td class=male>186 cm</td><td class=male>24</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Savanovic Goran</td><td class=male>198 cm</td><td class=male>28</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Silobad Mljadjan</td><td class=male>208 cm</td><td class=male>30</td><td class=male>skrzyd³owy/center</td></tr>
+<tr><td class=male>Skele Armands</td><td class=male>193 cm</td><td class=male>18</td><td class=male>obroñca</td></tr>
+<tr><td class=male>Witka Robert</td><td class=male>205 cm</td><td class=male>20</td><td class=male>skrzyd³owy</td></tr>

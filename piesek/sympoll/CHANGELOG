@@ -1,0 +1,126 @@
+/*---------------------.
+|  - is bug fix        |
+|  + is new feature    |
+|  * is anything else  |
+`---------------------*/
+
+
+[> 30-Jul-2002 -- v1.4
++ Some more improvements on security measures.  Nothing that changed from
+  version 1.3 is critical-- just some extra safeguards.
+
+[> 30-Jul-2002 -- v1.3
+  ***************************************************
+- ** IMPORTANT SECURITY FIX -- UPGRADE IMMEDIATELY **
+  ** Thanks Mats Linander, for reporting this one  **
+  ***************************************************
+- Another attempt to fix admin login problem for the few people still
+  experiencing it (thanks Ogre2112)
+- Fixed a problem in setup procedure when using php3 file extension
++ Automatically detect available list of language packs instead of
+  hard-coding the list in each release
++ Did the same thing for list of results bar images
++ Added dutch language file (thanks Jonathan Tamboer)
+* Some directory structure has changed!
+
+[> 24-JUL-2002 -- v1.2
+- Fixed possible warning when PHP is operating in safe-mode
+- Reverted to PHP setcookie() instead of sending manual Set-Cookie header
++ Add creation timestamp info to poll list in administration page
++ Add language support to the administration web interface.  Please send
+  me ACCURATE translations of the custom.php file in your language! 
+  See README for details.  Thanks Thomas Janotta for the German translation
+  and Alberto Giacobo for the Italian translation.
+* Don't bold the option you vote for.  It confuses too many people
+  Plus it shouldn't be difficult for people to remember anyway.  =)
+* Set IP logging to off by default on new installs, since it can prevent
+  people that are being NAT'd behind a firewall from voting if someone
+  else behind the same firewall has already voted.  Doesn't affect upgrades.
+* Switched to CSS for border stuff (thanks webmaster@cyaccess.eclipse.co.uk)
+  This cleans up the nested tables by removing a level of it
+* Poll lists now list from newest to oldest, ordered by creation timestamp
+
+[> 03-JUN-2002 -- v1.1
+- Fixed a problem where some versions of MySQL could not create the
+  sympoll_iplog table
+
+[> 01-JUN-2002 -- v1.0
+- Important security fix!
+- Fixed cookie problem with PHP 4.2.0
+- Fixed a problem where editing a poll without adding new options could
+  possibly corrupt the poll data
+- Fixed possible incorrect link generation when an index file doesn't
+  have its name specified as part of the URL
+- Improved XHTML compliance in the admin section
++ Another big change to the admin layout; I actually like it this time =)
++ Much improved ip logging maintainence (now on a poll-by-poll basis)
++ Polls now have three possible status choices:  hidden, open, closed
++ Polls can now allow one option per vote, or numerous options per vote
++ Extra statistics now available when IP logging is enabled
+* Allow Sympoll to accept blank MySQL username and/or password
+* Allow Sympoll to accept blank colors in display configuration
+* Improved "voter privacy" when IP logging is enabled
+* Renamed polllist.php to index.php
+* MANY MANY MANY MANY code improvements and other bug fixes
+
+[> 04-MAR-2002 -- v0.4.5  (note: this version is 1.0rc3)
+- Fixed a problem with HTTP vs. HTTPS
+- Fixed "Cannot redeclare ...." errors
+- Fixed more problems when turning off referral link.  (thanks PoorOldLuu)
+- Fixed a few trivial PHP warnings
+* Changed license to a derivitive of The Apache Software License
+* Added more info in the README about using an SSI to include a poll
+* Layout of polllist.php is more consistent between different polls
+* Pulled out some of the object-oriented PHP stuff
+* Various other bits of code/comment cleanup
+
+[> 08-JAN-2002 -- v0.4.4  (note: this version is 1.0rc2)
+- Fixed a problem with URLs being generated incorrectly on free.fr
+  (and any other system that uses proxad)
+- Added support for ports other than 80.  (thanks chris)
+* Completely "HTML 4.01 Transitional" compliant.  This does not include
+  the admin section.  (thanks richard)
+* More "XHTML 1.0 Transitional" compatibilty.  Only one tag is not
+  compliant, but changing it breaks HTML/4.01 validation so it won't be
+  fixed any time soon.  It's the meta tag in include/header.php.
+  (not including admin section)
+
+[> 05-JAN-2002 -- v0.4.3  (note: this version is 1.0rc1)
+- Fixed a small bug where the referral link would turn itself on after
+  changing other configuration options.  (thanks kurt)
+- Tried to fix some other option problems that only messed up in PHP3.  
+- Fixed a problem with the wrong links being generated on certain hosts
+  that use a proxy server for  PHP scripts.  (thanks stephane bernaud)
+- Fixed some problems with having a random poll and non-random polls
+  on the same page.  Please see the note added to README file in the 
+  section named  EXTRA 1.  (thanks gmt)
+* Began the process of making Sympoll XHTML/1.0 compatible.  Still more
+  to do on this in a later release
+* Administration page got a cosmetic makeover
+* Minor changes to the README file
+* Happy New Year!
+
+[> 29-NOV-2001 -- v0.4.2
+- Fixed a problem that could let users bypass IP logging when a poll is
+  loaded from their browser cache (thanks dj w ice)
+- Another attempt at fixing the IE admin login bug (which I I cannot seem
+  to duplicate)
+- Tried to fix an include problem in the admin section that some people
+  seem to experience
+
+[> 05-NOV-2001 -- v0.4.1
+- Fix a bug that occurs during a new install in PHP3 only.
+  (thanks kisscoool69)
+- Fixed a bug that would prompt for upgrade even during a new install
+
+[> 03-NOV-2001 -- v0.4
+- A really huge bunch of the following:  bug fixes, code cleanup, code
+  improvement, file reorganization, etc
+- Setup and upgrade procedures should be more robust
+- Fixed another rare "failed opening xx for inclusion" problem
+- Added a couple more lines to the language.php file
+- Made path corrections (for detecting cgi-wrapper) smarter
++ Added ability to prevent multiple voting via IP logging.  This can be
+  used with, or instead of, tracking via cookies.
+* Several other minor feature and cosmetic tweaks
+

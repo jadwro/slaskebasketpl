@@ -1,0 +1,66 @@
+BODY {SCROLLBAR-FACE-COLOR: #dce0e2; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #687888; SCROLLBAR-3DLIGHT-COLOR: #687888; SCROLLBAR-ARROW-COLOR: #6e7e88; SCROLLBAR-TRACK-COLOR: #bcbfc0; SCROLLBAR-DARKSHADOW-COLOR: #dce0e2}
+.tyt_admin {FONT-SIZE: 25px; FONT-FAMILY: verdana; font-weight:bold}
+.male {FONT-SIZE: 9px; FONT-FAMILY: verdana}
+.male2 {FONT-SIZE: 10px; FONT-FAMILY: verdana}
+.polecam {FONT-SIZE: 9px; FONT-FAMILY: verdana}
+.data_newsa {FONT-SIZE: 11px; COLOR: gray; FONT-FAMILY: arial,verdana}
+.edycja_newsa {FONT-SIZE: 10px; COLOR:#999999; FONT-FAMILY: arial,verdana}
+.tekst_gl {FONT-SIZE: 11px; font-family:Verdana,Arial; text-align:justify}; color:#888888}
+.tekst {FONT-SIZE: 12px; font-family:Verdana,Arial; TEXT-ALIGN:justify; FONT-VARIANT:normal}
+.tekst2 {FONT-SIZE: 12px; font-family:Verdana,Arial; FONT-VARIANT:normal}
+.tabela {FONT-SIZE: 10px; FONT-FAMILY: verdana,arial,tahoma,helvetica}
+.tytul_newsa {FONT-WEIGHT: bold; FONT-SIZE: 11px; FONT-FAMILY: Verdana}
+.napis_zawodnicy {FONT-WEIGHT: bold; FONT-SIZE: 22px; FONT-FAMILY: verdana}
+.zawodnicy_sezon {FONT-SIZE: 11px; BACKGROUND: #eeeeee; COLOR: #666666; FONT-FAMILY: arial,verdana}
+.szary_tekst {FONT-SIZE: 11px; COLOR: #888888; FONT-FAMILY: Verdana,Arial}
+.duze {FONT-WEIGHT: bold; FONT-SIZE: 23px; FONT-FAMILY: verdana}
+.waszekom {FONT-WEIGHT: bold; FONT-SIZE: 20px; FONT-FAMILY: verdana}
+.srednie {FONT-WEIGHT: bold; FONT-SIZE: 17px; FONT-FAMILY: verdana}
+.zawodnicy_tabela {FONT-WEIGHT: bold; FONT-SIZE: 9px; BACKGROUND: #000000; COLOR: white; FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica; TEXT-ALIGN: center}
+.zawodnik {FONT-WEIGHT: bold; FONT-SIZE: 9px; BACKGROUND: #000000; COLOR: white; FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica}
+.stat {FONT-SIZE: 9px; FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica; TEXT-ALIGN: right}
+.stat_lewo {FONT-SIZE: 9px; FONT-FAMILY: Verdana, Tahoma, Arial, Helvetica}
+A.autor_newsa:link {FONT-SIZE: 11px; COLOR: #FF0000; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none}
+A.autor_newsa:visited {FONT-SIZE: 11px; COLOR: #FF0000; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none}
+A.autor_newsa:hover {FONT-SIZE: 11px; COLOR: #FF0000; FONT-FAMILY: verdana,arial; TEXT-DECORATION: underline}
+A.zrodlo:link {FONT-SIZE: 9px; COLOR: #FF0000; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none}
+A.zrodlo:visited {FONT-SIZE: 9px; COLOR: #FF0000; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none}
+A.zrodlo:hover {FONT-SIZE: 9px; COLOR: #FF0000; FONT-FAMILY: verdana,arial; TEXT-DECORATION: underline}
+A:link {FONT-SIZE: 12px; COLOR: #0068d0; FONT-FAMILY: arial,tahoma,verdana,helvetica; TEXT-DECORATION: none}
+A:visited {FONT-SIZE: 12px; COLOR: #0068d0; FONT-FAMILY: arial,tahoma,verdana,helvetica; TEXT-DECORATION: none}
+A:hover {FONT-SIZE: 12px; COLOR: #FF0000; FONT-FAMILY: arial,tahoma,verdana,helvetica; TEXT-DECORATION: none}
+A.czarny:link {FONT-SIZE: 12px; COLOR: black; FONT-FAMILY: arial,verdana; TEXT-DECORATION: none}
+A.czarny:visited {FONT-SIZE: 12px; COLOR: black; FONT-FAMILY: arial,verdana; TEXT-DECORATION: none}
+A.czarny:hover {FONT-SIZE: 12px; COLOR: black; FONT-FAMILY: arial,verdana; TEXT-DECORATION: underline}
+.kwarta {font-family:verdana,arial; font-size:10px};
+a.kwarta:link {font-family:verdana,arial; font-size:10px; text-decoration:none; color:black};
+a.kwarta:visited {font-family:verdana,arial; font-size:10px; text-decoration:none; color:black};
+a.kwarta:hover {font-family:verdana,arial; font-size:10px; text-decoration:underline; color:black};
+.wynik {font-family:verdana,arial; font-size:16px; font-weight:bold};
+a.male:link {FONT-SIZE: 9px; FONT-FAMILY: verdana; text-decoration:none};
+a.male:visited {FONT-SIZE: 9px; FONT-FAMILY: verdana; text-decoration:none};
+a.male:hover {FONT-SIZE: 9px; FONT-FAMILY: verdana; text-decoration:none};
+.miejsce {FONT-SIZE: 11px; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none; font-weight:bold; color:#888888}
+a.miejsce:link {FONT-SIZE: 11px; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none; font-weight:bold; text-decoration:none; color:#888888}
+a.miejsce:visited {FONT-SIZE: 11px; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none; font-weight:bold; text-decoration:none; color:#888888}
+a.miejsce:hover {FONT-SIZE: 11px; COLOR:#000000; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none; font-weight:bold; text-decoration:underline}
+.gora {FONT-SIZE: 11px; COLOR:black; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none; font-weight:bold}
+A.gora:link {FONT-SIZE: 11px; COLOR:black; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none; font-weight:bold}
+A.gora:visited {FONT-SIZE: 11px; COLOR:black; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none; font-weight:bold}
+A.gora:hover {FONT-SIZE: 11px; COLOR:black; FONT-FAMILY: verdana,arial; TEXT-DECORATION: underline; font-weight:bold}
+.monthyear {  font-family: Verdana; font-size: 11px; font-style: normal; line-height: normal; font-weight: bold; color: #ff0000; text-decoration: none}
+a.monthyear:link {  font-family: Verdana; font-size: 11px; font-style: normal; line-height: normal; font-weight: bold; color: #ff0000; text-decoration: none; letter-spacing:4}
+a.monthyear:visited {  font-family: Verdana; font-size: 11px; font-style: normal; line-height: normal; font-weight: bold; color: #ff0000; text-decoration: none; letter-spacing:4}
+a.monthyear:hover {  font-family: Verdana; font-size: 11px; font-style: normal; line-height: normal; font-weight: bold; color: #ff0000; text-decoration: underline; letter-spacing:4}
+.daynames {  font-family: Arial, Helvetica, sans-serif; font-size: 9px; font-style: normal; font-weight: normal; color: #000000; text-decoration: none}
+.dates {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: normal; color: #000000; text-decoration: none; background:#dfdfdf}
+.najedz {color:black; font-family:arial,verdana,helvetica; font-size:10px};
+.zjedz {color:gray; font-family:arial,verdana,helvetica; font-size:10px};
+.szukaj {color:black; background-color:#eeeeee; font-family:arial,verdana; font-size:10px};
+.szukaj2 {color:black; background-color:#eeeeee; font-family:arial,verdana; font-size:12px};
+A.galeria {PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px}
+A.galeria:hover {COLOR: #ffffff; BACKGROUND-COLOR: #0068d0; TEXT-DECORATION: none}
+.zawodnicy {color:black; background-color:#eeeeee; font-family:arial,verdana; font-size:10px};
+.bez_obr {border-left:0px; border-right:0px; border-bottom:0px; border-top:0px};
+.obr1 {border-left:1px; border-right:1px; border-bottom:1px; border-top:1px};
+.lista {BORDER-RIGHT: #0068d0 1px solid; BORDER-TOP: #0068d0 1px solid; BORDER-LEFT: #0068d0 1px solid; COLOR: #000000; BORDER-BOTTOM: #0068d0 1px solid; BACKGROUND-COLOR: #eeeeee}
